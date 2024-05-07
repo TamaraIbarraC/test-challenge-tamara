@@ -9,8 +9,16 @@ const getUsers = () => {
 
 // Filters users by specific ID
 const getUser = (id) => {
-  return users.find((user) => user.id === id);
+  return new Promise((resolve, reject) => {
+  const user = users.find((user) => user.id === id);
+  if (user) {
+    resolve(user);
+  } else {
+    reject(new Error("User not found"));
+  }
+});
 };
+
 
 // test
 // console.log(getUser(3));
